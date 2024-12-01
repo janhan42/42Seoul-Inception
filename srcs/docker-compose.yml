@@ -1,0 +1,24 @@
+services:
+  my-mariadb:
+    container_name: my-mariadb
+    build: ./requirements/mariadb/.
+    image: my-mariadb
+    volumes:
+      - mariadb:/var/lib/mysql
+    env_file:
+      - .env
+    networks:
+      - janhan-net
+    restart: always
+
+  # nginx:
+  # wordpress:
+
+volumes:
+  mariadb:
+    name: mariadb
+
+networks:
+  janhan-net:
+    name: janhan-net
+    driver: bridge

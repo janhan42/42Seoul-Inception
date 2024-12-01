@@ -1,0 +1,50 @@
+# [server] 섹션은 일반적인 서버 설정을 정의하는 섹션입니다.
+[server]
+
+# [mysqld] 섹션은 MariaDB 서버 데몬(mysqld)의 설정을 정의합니다.
+[mysqld]
+
+# MariaDB 서버가 실행될 때 사용할 시스템 사용자 계정을 지정합니다. 기본적으로 'mysql' 사용자를 사용합니다.
+user = mysql
+
+# MariaDB 서버의 프로세스 ID(PID)를 저장할 파일의 경로를 지정합니다.
+pid-file = /run/mysqld/mysqld.pid
+
+# MariaDB 서버의 기본 설치 디렉터리를 지정합니다.
+basedir = /usr
+
+# 데이터베이스 파일이 저장되는 데이터 디렉터리의 경로를 지정합니다.
+datadir = /var/lib/mysql
+
+# 임시 파일이 저장되는 디렉터리를 지정합니다.
+tmpdir = /tmp
+
+# 언어 및 지역 설정 메시지가 저장된 디렉터리 경로를 지정합니다.
+lc-messages-dir = /usr/share/mysql
+
+# MariaDB 서버가 출력할 메시지의 언어 및 지역을 지정합니다. 여기서는 영어(미국)로 설정됩니다.
+lc-messages = en_US
+
+# 외부 파일 잠금 기능을 비활성화하여 파일 잠금과 관련된 문제를 방지합니다.
+skip-external-locking
+
+# MariaDB 서버가 모든 네트워크 인터페이스(0.0.0.0)에서 연결을 수신할 수 있도록 설정합니다.
+# 이를 통해 외부 IP 주소에서 MariaDB에 접근할 수 있습니다.
+bind-address = 0.0.0.0
+
+# 오래된 로그 파일을 몇 일 후에 자동으로 삭제할지를 설정합니다. 여기서는 10일 후에 삭제됩니다.
+expire_logs_days = 10
+
+# 서버에서 사용할 기본 문자 집합을 UTF-8의 확장 버전인 utf8mb4로 설정합니다.
+# utf8mb4는 이모지 및 다양한 특수 문자를 지원합니다.
+character-set-server = utf8mb4
+
+# 서버에서 기본적으로 사용할 문자 정렬 순서를 utf8mb4_general_ci로 설정합니다.
+# 이는 대소문자를 구분하지 않는 일반적인 정렬 방식입니다.
+collation-server = utf8mb4_general_ci
+
+# [embedded] 섹션은 임베디드된 MariaDB 설정에 사용되며, 대부분 일반 환경에서는 비어 있습니다.
+[embedded]
+
+# [mariadb] 섹션은 MariaDB 특정 설정을 정의합니다. 필요할 때 추가 설정을 여기에 작성합니다.
+[mariadb]
