@@ -1,7 +1,5 @@
 FROM debian:11
 
-FROM debian:11
-
 RUN apt-get update -y
 RUN apt-get install mariadb-server -y
 RUN apt-get install dumb-init -y

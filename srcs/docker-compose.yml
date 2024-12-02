@@ -10,13 +10,50 @@ services:
     networks:
       - janhan-net
     restart: always
-
-  # nginx:
-  # wordpress:
+  my-wordpress:
+    container_name: my-wordpress
+    build: ./requirements/wordpress/.
+    image: my-wordpress
+    depends_on:
+      - my-mariadb
+    volumes:
+      - wordpress:/var/www/html
+    env_file:
+      - .env
+    networks:
+      - janhan-net
+    restart: always
+  my-nginx:
+    container_name: my-nginx
+    build: ./requirements/nginx/.
+    image: my-nginx
+    ports:
+      - "443:443"
+    depends_on:
+      - my-wordpress
+    volumes:
+      - wordpress:/var/www/html
+    networks:
+      - janhan-net
+    env_file:
+      - .env
+    restart: always
 
 volumes:
   mariadb:
     name: mariadb
+    driver: local
+    driver_opts:
+      device: ${VOLUME_PATH}/mariadb
+      o: bind
+      type: none
+  wordpress:
+    name: wordpress
+    driver: local
+    driver_opts:
+      device: ${VOLUME_PATH}/wordpress
+      o: bind
+      type: none
 
 networks:
   janhan-net:

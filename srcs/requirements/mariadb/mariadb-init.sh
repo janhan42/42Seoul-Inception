@@ -3,7 +3,6 @@
 chown -R mysql:mysql /var/lib/mysql
 
 service mariadb start
-
 while ! mysqladmin ping -h localhost --silent; do
 	sleep 1
 done
@@ -21,4 +20,5 @@ while mysqladmin ping -h localhost --silent; do
 	sleep 1
 done
 
-mariadb
+mariadbd
+
